@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('krs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('matkul_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('matkul_id')->references('id')->on('matkuls')->onDelete('cascade');
             $table->integer('semester');
             $table->string('tahun_ajaran', 20);
             $table->enum('status', ['draft', 'submitted', 'approved', 'rejected'])->default('draft');
