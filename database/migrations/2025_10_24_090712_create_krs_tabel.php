@@ -11,6 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('matkuls', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode_matkul', 20);
+            $table->string('nama_matkul', 100);
+            $table->integer('sks');
+
+            $table->timestamps();
+        });
+
         Schema::create('krs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -19,15 +28,6 @@ return new class extends Migration
             $table->string('tahun_ajaran', 20);
             $table->enum('status', ['draft', 'submitted', 'approved', 'rejected'])->default('draft');
             $table->integer('total_sks')->default(0);
-
-            $table->timestamps();
-        });
-
-         Schema::create('matkuls', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode_matkul', 20);
-            $table->string('nama_matkul', 100);
-            $table->integer('sks');
 
             $table->timestamps();
         });

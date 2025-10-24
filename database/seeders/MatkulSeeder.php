@@ -13,10 +13,21 @@ class MatkulSeeder extends Seeder
      */
     public function run(): void
     {
-        Matkul::create([
-            'kode_matkul' => "KRS123",
-            'nama_matkul' => "Pemrograman Website",
-            'sks' => 3
-        ]);
+        $matkuls = [
+            [
+                'kode_matkul' => "KRS123",
+                'nama_matkul' => "Pemrograman Website",
+                'sks' => 3
+            ],
+            [
+                'kode_matkul' => "KRS345",
+                'nama_matkul' => "Pemrograman Mobile",
+                'sks' => 3
+            ],
+        ];
+
+        foreach ($matkuls as $matkul) {
+            Matkul::create($matkul);
+        }
     }
 }
