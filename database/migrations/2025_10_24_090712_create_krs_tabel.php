@@ -13,7 +13,24 @@ return new class extends Migration
     {
         Schema::create('krs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('semester');
+            $table->string('tahun_ajaran', 20);
+            $table->enum('status', ['draft', 'submitted', 'approved', 'rejected'])->default('draft');
+            $table->integer('total_sks')->default(0);
+
+            $table->timestamps();
+        });
+
+         Schema::create('matkuls', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('krs_id')->constrained('krs')->onDelete('cascade');
+            $table->string('kode_matkul', 20);
+            $table->string('nama_matkul', 100);
+            $table->integer('sks');
+            $table->string('nilai', 5)->nullable();
+            $table->enum('status', ['enrolled', 'taken', 'dropped'])->default('enrolled');
+            
             $table->timestamps();
         });
     }
@@ -23,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('krs_tabel');
+        Schema::dropIfExists('matkuls');
+        Schema::dropIfExists('krs');
     }
 };

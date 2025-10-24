@@ -6,8 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Krs extends Model
 {
-    public function users() 
+    protected $guarded = [
+        "id",
+    ];
+    public function user() 
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function matkuls() 
+    {
+        return $this->hasMany(Matkul::class);
     }
 }
