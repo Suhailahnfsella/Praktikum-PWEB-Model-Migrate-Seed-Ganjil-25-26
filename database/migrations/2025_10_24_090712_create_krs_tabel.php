@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('krs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('matkul_id')->constrained()->onDelete('cascade');
             $table->integer('semester');
             $table->string('tahun_ajaran', 20);
             $table->enum('status', ['draft', 'submitted', 'approved', 'rejected'])->default('draft');
@@ -24,13 +25,10 @@ return new class extends Migration
 
          Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('krs_id')->constrained('krs')->onDelete('cascade');
             $table->string('kode_matkul', 20);
             $table->string('nama_matkul', 100);
             $table->integer('sks');
-            $table->string('nilai', 5)->nullable();
-            $table->enum('status', ['enrolled', 'taken', 'dropped'])->default('enrolled');
-            
+
             $table->timestamps();
         });
     }

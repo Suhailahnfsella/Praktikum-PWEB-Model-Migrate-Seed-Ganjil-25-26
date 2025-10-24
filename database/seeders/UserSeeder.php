@@ -2,21 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Matkul;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MatkulSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Matkul::create([
-            'kode_matkul' => "KRS123",
-            'nama_matkul' => "Pemrograman Website",
-            'sks' => 3
+        User::create([
+            'name' => "Dian Eka",
+            'email' => "dianeka123@gmail.com",
+            'password' => "Eka123"
         ]);
     }
 }

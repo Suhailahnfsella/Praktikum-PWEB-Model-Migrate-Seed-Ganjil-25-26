@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id(); // int: auto increment
             // $table->uuid('user_id'); // uuid: universal unique identifier
             $table->string('name');
-            $table->integer('saldo_user')->nullable();
-            $table->integer('phone_number')->nullable();
             $table->string('email')->unique(); // ukurannya 255 character
-            $table->longText('Alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string(column: 'password');
             $table->rememberToken();
