@@ -16,10 +16,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable = [ // Kolom yang harus/bisa diisi secara manual (menggunakan fitur CRUD / seeder)
         'name',
         'email',
         'password',
+    ];
+
+    protected $guarded = [ // Kolom yang diproteksi (tidak boleh diisi secara manual)
+        'id'
     ];
 
     /**
@@ -43,5 +47,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function krses() 
+    {
+        return $this->hasMany(Krs::class);
     }
 }

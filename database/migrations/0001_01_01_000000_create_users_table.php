@@ -12,13 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // int: auto increment
+            // $table->uuid('user_id'); // uuid: universal unique identifier
             $table->string('name');
-            $table->string('email')->unique();
+            $table->integer('saldo_user')->nullable();
+            $table->integer('phone_number')->nullable();
+            $table->string('email')->unique(); // ukurannya 255 character
+            $table->longText('Alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string(column: 'password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps(); // default laravel: membuat kolom created_at & updated_at
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
