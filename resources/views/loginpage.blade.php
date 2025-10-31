@@ -12,15 +12,18 @@
         <p style="color:red;">{{ session('error') }}</p>
     @endif
 
-    <form method="POST" action="/login">
+    <form method="POST" action="{{ route('cekLogin') }}">
         @csrf
-        <label>Username:</label>
-        <input type="text" name="username"><br><br>
+        <label>Email:</label>
+        <input type="text" name="email"><br><br>
 
         <label>Password:</label>
         <input type="password" name="password"><br><br>
-
         <button type="submit">Login</button>
+
+        {{-- @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach --}}
     </form>
 </body>
 
