@@ -23,6 +23,8 @@
             @endforeach
         </ul>
     @endforeach
+
+    <button>Logout</button>
 </body>
 
 </html>
